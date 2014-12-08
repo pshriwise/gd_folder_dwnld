@@ -2,7 +2,7 @@
 
 #input sharelink here. Example: https://drive.google.com/folderview?id=0B1g-MbiD2F6vdtOT92b3MoerO&usp=sharing
 SHARELINK="https://drive.google.com/folderview?id=0B_lSrTE8wNeNNTJBTWF0T2U2THc&usp=sharing"
-DESTINATION="./figs/"
+DESTINATION="./figures/"
 # Change following to false when you don't want to delete files when they are missing from google drive. This can
 REMOVEFILES=false 
 
