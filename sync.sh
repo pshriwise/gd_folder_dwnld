@@ -4,7 +4,7 @@
 SHARELINK="https://drive.google.com/folderview?id=0B_lSrTE8wNeNNTJBTWF0T2U2THc&usp=sharing"
 DESTINATION="./figures/"
 # Change following to false when you don't want to delete files when they are missing from google drive. This can
-REMOVEFILES=false 
+REMOVEFILES=false
 
 # Begin code
 
@@ -25,7 +25,10 @@ download () {
 	IFS="
 "
 	for subfolder in $subfolders; do
-		name=$(echo "$wgetoutput" | grep -Eo 'entry-'$subfolder'.*?</div></div><div class=\"flip-entry-title\">(.*?)</div>' | grep -Eo 'entry-title">.*?</div>$' | cut -c 14- | sed 's/<\/div>//')
+		name=$(echo "$wgetoutput" | grep -Eo 'entry-'$subfolder'.*?<div class="flip-entry-title">(.*?)</div>')
+                echo NAME:
+                name=$(echo "$name"  | grep -Eo 'entry-title">(.*?)</div>' | sed 's/<\/div>.*//' | cut -c 14- )
+                echo $name
 		newdest="$2/$name"
 		escapedfile="$(echo "$newdest" | sed -e 's/[]\$*.^|[]/\\&/g')"
 		missingdirectories=$(echo "$missingdirectories" | sed -e "s@$escapedfile@@g" | sed '/^$/d')
